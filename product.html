@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscriber Resource Portal | unyoga.life</title>
+    <style>
+        :root {
+            --bg-color: #fcfbfa;
+            --text-color: #2b2927;
+            --accent-color: #70655c;
+            --border-color: #e6e2de;
+            --card-bg: #ffffff;
+            --success-color: #5c6e65;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 0 20px;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .logo { font-weight: 700; font-size: 1.3rem; letter-spacing: 0.05em; color: var(--text-color); text-decoration: none; }
+        .logo span { color: var(--accent-color); }
+        .badge { background: var(--border-color); padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; color: var(--accent-color); }
+        
+        .welcome-banner { margin-bottom: 40px; }
+        .welcome-banner h1 { font-size: 2.2rem; font-weight: 800; margin-bottom: 8px; }
+        .welcome-banner p { color: #57524e; font-size: 1.1rem; }
+
+        /* Dashboard Grid Layout */
+        .portal-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+        @media (max-width: 900px) {
+            .portal-grid { grid-template-columns: 1fr; }
+        }
+
+        .main-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        .main-card h2 { font-size: 1.5rem; margin-bottom: 20px; border-bottom: 1px solid var(--bg-color); padding-bottom: 10px; }
+
+        /* Interactive Timer Tool */
+        .timer-container {
+            text-align: center;
+            padding: 20px;
+            background: var(--bg-color);
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+        .timer-display { font-size: 3.5rem; font-weight: 700; font-family: monospace; color: var(--accent-color); margin-bottom: 15px; }
+        .timer-btn {
+            background: var(--text-color);
+            color: var(--bg-color);
+            border: none;
+            padding: 10px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 0 5px;
+            transition: background 0.2s;
+        }
+        .timer-btn:hover { background: var(--accent-color); }
+        .timer-btn.stop { background: #8a4f4f; }
+
+        /* Diagnostic Data Accordion */
+        .obstacle-row {
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 0;
+        }
+        .obstacle-row:last-child { border: none; }
+        .obstacle-title { font-weight: 700; color: var(--text-color); margin-bottom: 4px; display: flex; justify-content: space-between; }
+        .sutra-fix { font-style: italic; color: var(--success-color); font-size: 0.95rem; margin-top: 4px; }
+
+        /* Resource Download Links */
+        .download-list { list-style: none; }
+        .download-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .download-item:last-child { border: none; }
+        .download-link { color: var(--text-color); font-weight: 600; text-decoration: none; }
+        .download-link:hover { color: var(--accent-color); }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <a href="index.html" class="logo">UNY<span>YOGA</span></a>
+            <span class="badge">Subscriber Portal</span>
+        </header>
+
+        <section class="welcome-banner">
+            <h1>Your Consciousness Sanctuary</h1>
+            <p>Welcome back, Sanjeev. Use these tools to systematically monitor your holds, strip away mental obstacles, and preserve your deep <strong>Ojas</strong>.</p>
+        </section>
+
+        <div class="portal-grid">
+            <!-- Left Column: Core Tools and Diagnostics -->
+            <div class="left-column">
+                
+                <!-- Section 1: Static Hold (Sthira) Practice Timer -->
+                <div class="main-card">
+                    <h2>1. Sthira Static Hold Assistant</h2>
+                    <p>Patanjali instructs us to relax effort during holds. Lock your posture, fix your unmoving gaze (<em>Drishti</em>), and initiate this tracker to clock your stable presence without watching an external clock face.</p>
+                    
+                    <div class="timer-container">
+                        <div class="timer-display" id="display">00:00</div>
+                        <button class="timer-btn" id="startBtn" onclick="toggleTimer()">Start Hold</button>
+                        <button class="timer-btn stop" onclick="resetTimer()">Reset</button>
+                    </div>
+                </div>
+
+                <!-- Section 2: Sutra Diagnostic Engine -->
+                <div class="main-card">
+                    <h2>2. Internal Obstacle Interactive Diagnostic Index (Sutra 1.30)</h2>
+                    <p>If your practice stalls, identify the active bottleneck below and execute its corresponding scriptural correction immediately to stop vital energy dissipation.</p>
+                    
+                    <div class="obstacle-row">
+                        <div class="obstacle-title"><span>Vyādhi (Physical Illness)</span> <span style="color:var(--accent-color);">Stage 1</span></div>
+                        <p style="font-size:0.9rem; color:#57524e;">Bodily or chemical imbalances that force focus outward onto physical pain.</p>
+                        <div class="sutra-fix">➔ Correction (Sutra 1.34): Execute 5 cycles of long, smooth exhalations and external breath-holds to settle the pulse.</div>
+                    </div>
+
+                    <div class="obstacle-row">
+                        <div class="obstacle-title"><span>Saṁśaya (Chronic Doubt)</span> <span style="color:var(--accent-color);">Stage 3</span></div>
+                        <p style="font-size:0.9rem; color:#57524e;">Intellectual hesitation that paralyzes your willpower, rendering regular practice inconsistent.</p>
+                        <div class="sutra-fix">➔ Correction (Sutra 1.32): Practice absolute intensity on one singular chosen anchor (Eka-Tattva Abhyāsa).</div>
+                    </div>
+
+                    <div class="obstacle-row">
+                        <div class="obstacle-title"><span>Avirati (Sensory Greed)</span> <span style="color:var(--accent-color);">Stage 6</span></div>
+                        <p style="font-size:0.9rem; color:#57524e;">The sudden urge to break internal focus to satisfy an external craving or digital distraction.</p>
+                        <div class="sutra-fix">➔ Correction (Sutra 1.33): Apply Upekṣā (emotional neutrality) to cut off external validation fields.</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Right Column: Sidebar Downloads & Reference Links -->
+            <div class="right-column">
+                <div class="main-card">
+                    <h2 style="font-size:1.2rem; margin-bottom:15px;">Your Visual Manual Vault</h2>
+                    <p style="font-size:0.85rem; color:#57524e; margin-bottom:15px;">View or print your high-resolution reference resources:</p>
+                    
+                    <ul class="download-list">
+                        <li class="download-item">
+                            <a href="#" class="download-link" onclick="alert('Opening High-Resolution Asana Poster Sheet.'); return false;">1. Asana Line-Art Manual</a>
+                            <span style="font-size:0.8rem; color:#888;">PDF</span>
+                        </li>
+                        <li class="download-item">
+                            <a href="#" class="download-link" onclick="alert('Opening Breathing Timing Matrix Sheet.'); return false;">2. Pranayama Matrix Chart</a>
+                            <span style="font-size:0.8rem; color:#888;">PDF</span>
+                        </li>
+                        <li class="download-item">
+                            <a href="#" class="download-link" onclick="alert('Opening 30-Day Master Tracker.'); return false;">3. 30-Day Ojas Planner</a>
+                            <span style="font-size:0.8rem; color:#888;">XLSX</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="main-card" style="background: var(--text-color); color: var(--bg-color); border: none;">
+                    <h3 style="font-size:1.1rem; margin-bottom:10px;">Daily Anchor Affirmation</h3>
+                    <p style="font-size:0.9rem; font-style: italic; line-height: 1.4; color: var(--border-color);">"Sa tu dīrgha-kāla-nairantarya-satkārāsevi-to dṛḍha-bhūmiḥ"<br><br>Practice becomes an unshakable foundation only when sustained for a long period, without daily gaps, and with deep reverence.</p>
+                    <div style="font-size:0.8rem; text-align:right; margin-top:10px; color: var(--accent-color); font-weight:700;">- Yoga Sutra 1.14</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
